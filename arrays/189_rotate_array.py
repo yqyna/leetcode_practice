@@ -20,8 +20,37 @@ def rotate_array_1(nums, k):
     nums[:] = nums[n-k:] + nums[:n-k]
 
 
+def rotate_array_2(nums, k):
+    """
+    轮转数组 反转方法
+
+    :param nums:
+    :param k:
+    :return:
+    """
+
+    def reverse(arr, a, b):
+        """
+
+        :param arr:
+        :param a:
+        :param b:
+        :return:
+        """
+        while a < b:
+            arr[a], arr[b] = arr[b], arr[a]
+            a += 1
+            b -= 1
+    n = len(nums)
+    k = k % n
+    reverse(nums, 0, n - k - 1)
+    reverse(nums, n - k, n - 1)
+    reverse(nums, 0, n - 1)
+
+
 if __name__ == '__main__':
-    a = [1, 2, 3, 4, 5, 6, 7]
-    s = 1
-    rotate_array_1(a, s)
-    print(a)
+    c = [1, 2, 3, 4, 5, 6, 7]
+    s = 3
+    # rotate_array_1(c, s)  [5, 6, 7, 1, 2, 3, 4]
+    rotate_array_2(c, s)  # [5, 6, 7, 1, 2, 3, 4]
+    print(c)
